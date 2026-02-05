@@ -100,6 +100,25 @@ const flavorLines = [
   "次なる拡張を見据えた基盤スキル。",
 ];
 
+/** リサイズ時の連続更新を抑えるためのタイマー。 */
+let resizeTimer;
+let resizeHandler;
+
+/**
+ * 画面サイズに応じたCSSカスタムプロパティを更新する。
+ */
+function updateViewportVars() {
+  const root = document.documentElement;
+  // モバイルブラウザの表示領域変化（アドレスバーやキーボード）を反映するためにvisualViewportを優先する。
+  const height = window.visualViewport?.height ?? window.innerHeight;
+  const styles = getComputedStyle(root);
+  const logRatio = parseFloat(styles.getPropertyValue("--log-max-height-ratio")) || 0.3;
+  const skillRatio = parseFloat(styles.getPropertyValue("--skill-tree-max-height-ratio")) || 0.6;
+  root.style.setProperty("--viewport-height", `${height}px`);
+  root.style.setProperty("--log-max-height", `${height * logRatio}px`);
+  root.style.setProperty("--skill-tree-max-height", `${height * skillRatio}px`);
+}
+
 function createSkillTree() {
   branches.forEach((branch) => {
     const config = branchConfig[branch.id];
@@ -282,6 +301,15 @@ function init() {
   updateHeader();
   renderSkillTree("", "all");
   logMessage("冒険の準備が整った。巨大なスキルツリーを解放しよう。");
+  updateViewportVars();
+  if (resizeHandler) {
+    window.removeEventListener("resize", resizeHandler);
+  }
+  resizeHandler = () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(updateViewportVars, 100);
+  };
+  window.addEventListener("resize", resizeHandler);
 
   document.getElementById("adventure-button").addEventListener("click", grantQuestRewards);
   document.getElementById("rest-button").addEventListener("click", restAtCamp);

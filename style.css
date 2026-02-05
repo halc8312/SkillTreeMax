@@ -1,21 +1,45 @@
+:root {
+  --page-padding: clamp(16px, 4vw, 32px);
+  --log-max-height-ratio: 0.3;
+  --skill-tree-max-height-ratio: 0.6;
+  --breakpoint-mobile: 600px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
   background: #0b1020;
   color: #e4e9f5;
   margin: 0;
-  padding: 32px;
+  min-height: var(--viewport-height, 100svh);
+  padding: calc(env(safe-area-inset-top) + var(--page-padding))
+    calc(env(safe-area-inset-right) + var(--page-padding))
+    calc(env(safe-area-inset-bottom) + var(--page-padding))
+    calc(env(safe-area-inset-left) + var(--page-padding));
 }
 
 .hero {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 24px;
-  padding: 32px;
+  padding: clamp(20px, 4vw, 32px);
   background: linear-gradient(135deg, #121826, #1f2a44);
   color: #f6f7fb;
-  border-radius: 24px;
+  border-radius: clamp(16px, 4vw, 24px);
   box-shadow: 0 24px 60px rgba(11, 18, 38, 0.45);
   margin-bottom: 32px;
+}
+
+.hero > div {
+  flex: 1 1 260px;
+  min-width: 0;
 }
 
 .eyebrow {
@@ -27,7 +51,7 @@ body {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: clamp(28px, 6vw, 48px);
   margin: 0 0 16px;
 }
 
@@ -38,15 +62,18 @@ h1 {
 }
 
 .hero-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
+  justify-content: flex-start;
 }
 
 .hero-stats div {
   background: rgba(255, 255, 255, 0.08);
   padding: 16px;
   border-radius: 16px;
+  flex: 1 1 120px;
+  min-width: 120px;
 }
 
 .hero-stats span {
@@ -61,23 +88,34 @@ h1 {
 }
 
 .layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 24px;
+  align-items: stretch;
 }
 
 .panel {
   background: #121826;
-  border-radius: 20px;
-  padding: 24px;
+  border-radius: clamp(16px, 3vw, 20px);
+  padding: clamp(18px, 3vw, 24px);
   box-shadow: 0 18px 45px rgba(4, 8, 20, 0.45);
 }
 
+.layout > .panel {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
 .status-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px 18px;
   margin-bottom: 16px;
+}
+
+.status-grid div {
+  flex: 1 1 140px;
+  min-width: 120px;
 }
 
 .status-grid span {
@@ -93,8 +131,13 @@ h1 {
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 16px;
+}
+
+.actions button {
+  flex: 1 1 160px;
 }
 
 button {
@@ -105,6 +148,7 @@ button {
   background: #4f46e5;
   color: white;
   cursor: pointer;
+  max-width: 100%;
 }
 
 button.ghost {
@@ -123,15 +167,15 @@ button:disabled {
   border-radius: 12px;
   padding: 12px;
   min-height: 120px;
-  max-height: 200px;
+  max-height: min(200px, var(--log-max-height, calc(100vh * var(--log-max-height-ratio))));
   overflow-y: auto;
   font-size: 14px;
   line-height: 1.5;
 }
 
 .toolbar {
-  display: grid;
-  grid-template-columns: 1fr 180px auto auto;
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 16px;
 }
@@ -143,13 +187,19 @@ select {
   border: 1px solid #1e293b;
   background: #0f172a;
   color: #e2e8f0;
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.toolbar button {
+  flex: 1 1 140px;
 }
 
 .skill-tree {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  max-height: 520px;
+  max-height: min(520px, var(--skill-tree-max-height, calc(100vh * var(--skill-tree-max-height-ratio))));
   overflow-y: auto;
   padding-right: 4px;
 }
@@ -165,6 +215,8 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   cursor: pointer;
   margin-bottom: 12px;
 }
@@ -177,11 +229,13 @@ select {
 .branch-meta {
   font-size: 12px;
   color: #94a3b8;
+  flex: 1 1 200px;
+  text-align: right;
 }
 
 .skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
@@ -192,6 +246,8 @@ select {
   border: 1px solid transparent;
   cursor: pointer;
   transition: border 0.2s ease, transform 0.2s ease;
+  flex: 1 1 160px;
+  min-width: 140px;
 }
 
 .skill-card:hover {
@@ -215,7 +271,7 @@ select {
 }
 
 .skill-card strong {
-  font-size: 15px;
+  font-size: clamp(14px, 3vw, 15px);
 }
 
 .roadmap {
@@ -244,6 +300,7 @@ select {
 .detail-meta {
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
   font-size: 13px;
   color: #cbd5f5;
   margin-bottom: 16px;
@@ -262,10 +319,20 @@ footer {
   }
 
   .hero-stats {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    width: 100%;
+  }
+}
+
+@media (max-width: var(--breakpoint-mobile)) {
+  .branch-meta {
+    text-align: left;
   }
 
-  .toolbar {
-    grid-template-columns: 1fr;
+  .actions button {
+    flex: 1 1 100%;
+  }
+
+  .toolbar button {
+    flex: 1 1 100%;
   }
 }
