@@ -100,6 +100,13 @@ const flavorLines = [
   "次なる拡張を見据えた基盤スキル。",
 ];
 
+function updateViewportVars() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  document.documentElement.style.setProperty("--viewport-width", `${width}px`);
+  document.documentElement.style.setProperty("--viewport-height", `${height}px`);
+}
+
 function createSkillTree() {
   branches.forEach((branch) => {
     const config = branchConfig[branch.id];
@@ -282,6 +289,8 @@ function init() {
   updateHeader();
   renderSkillTree("", "all");
   logMessage("冒険の準備が整った。巨大なスキルツリーを解放しよう。");
+  updateViewportVars();
+  window.addEventListener("resize", updateViewportVars);
 
   document.getElementById("adventure-button").addEventListener("click", grantQuestRewards);
   document.getElementById("rest-button").addEventListener("click", restAtCamp);
