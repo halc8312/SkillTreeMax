@@ -1,0 +1,271 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px;
+  background: linear-gradient(135deg, #121826, #1f2a44);
+  color: #f6f7fb;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(11, 18, 38, 0.45);
+  margin-bottom: 32px;
+}
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+  background: #0b1020;
+  color: #e4e9f5;
+  margin: 0;
+  padding: 32px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 12px;
+  margin: 0 0 12px;
+  color: #94a3b8;
+}
+
+h1 {
+  font-size: 48px;
+  margin: 0 0 16px;
+}
+
+.subtitle {
+  max-width: 480px;
+  line-height: 1.6;
+  color: #cbd5f5;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.hero-stats div {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.hero-stats span {
+  font-size: 12px;
+  color: #b4c0e1;
+}
+
+.hero-stats strong {
+  display: block;
+  font-size: 22px;
+  margin-top: 8px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.panel {
+  background: #121826;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 18px 45px rgba(4, 8, 20, 0.45);
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 12px 18px;
+  margin-bottom: 16px;
+}
+
+.status-grid span {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.status-grid strong {
+  display: block;
+  font-size: 20px;
+  margin-top: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 600;
+  background: #4f46e5;
+  color: white;
+  cursor: pointer;
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid #334155;
+  color: #cbd5f5;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.log {
+  background: #0f172a;
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 120px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr 180px auto auto;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+input,
+select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.skill-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.skill-branch {
+  border: 1px solid #1f2a44;
+  border-radius: 16px;
+  padding: 16px;
+  background: #0f172a;
+}
+
+.branch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.branch-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.branch-meta {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.skill-card {
+  border-radius: 12px;
+  padding: 12px;
+  background: #111c34;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: border 0.2s ease, transform 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  border-color: #4f46e5;
+}
+
+.skill-card.locked {
+  opacity: 0.6;
+}
+
+.skill-card.unlocked {
+  border-color: #22c55e;
+}
+
+.skill-card span {
+  display: block;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.skill-card strong {
+  font-size: 15px;
+}
+
+.roadmap {
+  padding-left: 18px;
+  line-height: 1.8;
+}
+
+.note {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #a7b3d6;
+}
+
+.details {
+  margin-top: 24px;
+}
+
+.detail-content.hidden {
+  display: none;
+}
+
+.skills.hidden {
+  display: none;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #cbd5f5;
+  margin-bottom: 16px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 32px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+}
