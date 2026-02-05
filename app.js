@@ -17,7 +17,7 @@ const branches = [
   { id: "support", name: "支援・回復", color: "#22c55e" },
   { id: "tank", name: "守護・防衛", color: "#f59e0b" },
   { id: "craft", name: "鍛冶・錬金", color: "#a855f7" },
-  { id: "explore", name: "探索・探索術", color: "#14b8a6" },
+  { id: "explore", name: "探索術", color: "#14b8a6" },
   { id: "tactics", name: "戦術・指揮", color: "#f97316" },
   { id: "arcane", name: "深淵魔導", color: "#6366f1" },
 ];
@@ -105,7 +105,8 @@ function createSkillTree() {
     const config = branchConfig[branch.id];
     for (let tier = 1; tier <= config.tiers; tier += 1) {
       for (let i = 1; i <= config.skillsPerTier; i += 1) {
-        const baseName = skillNames[branch.id][(tier + i) % skillNames[branch.id].length];
+        const nameIndex = (tier * config.skillsPerTier + i - 1) % skillNames[branch.id].length;
+        const baseName = skillNames[branch.id][nameIndex];
         skillTree.push({
           id: `${branch.id}-${tier}-${i}`,
           name: `${baseName}・${tier}-${i}`,
