@@ -1,5 +1,8 @@
 :root {
   --page-padding: clamp(16px, 4vw, 32px);
+  --log-max-height-ratio: 0.3;
+  --skill-tree-max-height-ratio: 0.6;
+  --breakpoint-mobile: 600px;
 }
 
 *,
@@ -164,7 +167,7 @@ button:disabled {
   border-radius: 12px;
   padding: 12px;
   min-height: 120px;
-  max-height: min(200px, calc(var(--viewport-height, 100vh) * 0.3));
+  max-height: min(200px, var(--log-max-height, calc(100vh * var(--log-max-height-ratio))));
   overflow-y: auto;
   font-size: 14px;
   line-height: 1.5;
@@ -196,7 +199,7 @@ select {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  max-height: min(520px, calc(var(--viewport-height, 100vh) * 0.6));
+  max-height: min(520px, var(--skill-tree-max-height, calc(100vh * var(--skill-tree-max-height-ratio))));
   overflow-y: auto;
   padding-right: 4px;
 }
@@ -320,7 +323,7 @@ footer {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoint-mobile)) {
   .branch-meta {
     text-align: left;
   }
