@@ -239,6 +239,55 @@ const weaponShopItems = [
 ];
 ```
 
+### 魔法店
+
+```javascript
+const magicShopItems = [
+  {
+    id: "catalyst_fire",
+    name: "火炎触媒",
+    description: "炎属性スキルの効果を高める触媒。",
+    category: "material",
+    price: 400,
+    sellPrice: 200,
+    maxStack: 50,
+    levelRequired: 10
+  },
+  {
+    id: "catalyst_ice",
+    name: "氷結触媒",
+    description: "氷属性スキルの効果を高める触媒。",
+    category: "material",
+    price: 400,
+    sellPrice: 200,
+    maxStack: 50,
+    levelRequired: 10
+  },
+  {
+    id: "skillbook_heal",
+    name: "スキル書:ヒール",
+    description: "支援系統スキルの解放に必要な古文書。",
+    category: "consumable",
+    price: 800,
+    sellPrice: 400,
+    effect: { type: "unlock_skill", skillId: "support-1-1" },
+    maxStack: 5,
+    levelRequired: 12
+  },
+  {
+    id: "skillbook_fire",
+    name: "スキル書:ファイア",
+    description: "元素魔法スキルの解放に必要な古文書。",
+    category: "consumable",
+    price: 900,
+    sellPrice: 450,
+    effect: { type: "unlock_skill", skillId: "magic-1-1" },
+    maxStack: 5,
+    levelRequired: 12
+  }
+];
+```
+
 ## 実装タスク
 
 ### Task 5.1: ショップデータモジュール
