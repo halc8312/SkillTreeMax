@@ -1,0 +1,12 @@
+{
+  "name": "skilltreemax",
+  "version": "1.0.0",
+  "description": "世界最大級スキルツリーRPG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
